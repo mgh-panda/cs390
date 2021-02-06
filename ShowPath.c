@@ -32,5 +32,6 @@ int printStrings(const char* args[])
         printf("%s\n", args[index]);
         index++;
     }
+    
     return 0;
 }
