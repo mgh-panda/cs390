@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
 int printStrings(const char* args[]);
 
@@ -8,7 +10,7 @@ int main( )
     const char* stringArray[100];
 
     char *path = getenv("PATH");
-    char *token = strtok(path, ":")
+    char *token = strtok(path, ":");
     
     while(token != NULL)
     {
