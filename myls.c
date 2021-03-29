@@ -9,7 +9,6 @@ int main (int argc, char *argv[])
 
     if (argc == 1)
     {
-        //you don't have an argument, so you opendir(".")
         if ((directoryPointer = opendir(".") == NULL)
         {
             printf("No directory access.");
@@ -24,8 +23,7 @@ int main (int argc, char *argv[])
     }
     else if (argc == 2)
     {
-        //you've got either a "-a" or a directory.
-        if (argv[1] == "-a") //then directory is implied to be "."
+        if (argv[1] == "-a")
         {
             if ((directoryPointer = opendir(".") == NULL)
             {
@@ -36,7 +34,7 @@ int main (int argc, char *argv[])
                 printf("%s\n", dirent.d_name);
             }
         }
-        else //argv[1] is the directory.
+        else
         {
             if ((directoryPointer = opendir(argv[1])) == NULL)
             {
@@ -56,6 +54,10 @@ int main (int argc, char *argv[])
         if (argv[1] != "-a")
         {
             printf("Invalid option.")
+        }
+        else if ((directoryPointer = opendir(argv[2])) == NULL)
+        {
+            printf("No directory access.");
         }
         else while (dirent = readdir(directoryPointer) != NULL)
         {
