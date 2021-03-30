@@ -15,7 +15,7 @@ int cmd_remove_directory(const char* directoryName);//clarification
 int main (int argc, char *argv[])
 {
     const char* prompt = "$";
-    const char* inputString;
+    char inputString[MAX_INPUT];
     const char* tempString;
     char delimeters[] = " \t\r\n\v\f";
     const char *arguments[100];
