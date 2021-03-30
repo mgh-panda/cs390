@@ -23,12 +23,11 @@ int main (int argc, char *argv[])
 
     while(TRUE)
     {
-        int argumentCount = 1;
+        int argumentCount = 0;
         int argumentIndex = 0;
 
         printf("%s", prompt);
         fgets(inputString, MAX_INPUT, stdin);
-        //printf("%s", inputString);
         tempString = strtok(inputString, delimeters);
         while (tempString != NULL)
         {
