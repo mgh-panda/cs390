@@ -29,9 +29,9 @@ int main (int argc, char *argv[])
         printf("%s", prompt);
         gets(inputString);
         tempString = strtok(inputString, delimeters);
+            printf("%s", tempString);
         while (tempString != NULL)
         {
-            printf("%s", tempString);
             argumentCount++;
             arguments[argumentIndex] = tempString;
             tempString = strtok(NULL, delimeters);
