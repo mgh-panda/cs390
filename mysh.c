@@ -36,10 +36,10 @@ int main (int argc, char *argv[])
             tempString = strtok(NULL, delimeters);
             argumentIndex++;
         }
-        for (int i = 0; i < argumentCount; i++)
+        /*for (int i = 0; i < argumentCount; i++)
         {
             printf("%s\n", arguments[i]);
-        }
+        }*/
     }
     return 0;
 }
