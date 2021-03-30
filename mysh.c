@@ -23,7 +23,7 @@ int main (int argc, char *argv[])
     char *arguments;
     int argumentCount;
 
-    while(TRUE)
+    while(1)
     {
         printf("%s", prompt);
         gets(inputString);
