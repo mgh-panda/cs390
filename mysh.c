@@ -36,45 +36,6 @@ int main (int argc, char *argv[])
         gets(inputString);
         command = strtok(inputString, delimeters);
         printf("%s", command);
-        switch (command)
-        {
-            case ECHO:
-
-                break;
-
-            case PS1:
-
-                break;
-
-            case CAT:
-
-                break;
-
-            case CP:
-
-                break;
-
-            case RM:
-
-                break;
-
-            case MKDIR:
-
-                break;
-
-            case RMDIR:
-
-                break;
-
-            case EXIT:
-
-                break;
-
-            default:
-                
-
-                break;
-        }
     }
     return 0;
 }
