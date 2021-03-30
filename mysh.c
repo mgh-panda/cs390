@@ -25,33 +25,21 @@ int main (int argc, char *argv[])
     const char* prompt = "$";
     const char* inputString;
     const char* command;
-    const char** optionsAndArguments;
-    const char* commandArguments[MAX_INPUT];
-    
+    char delimeters[] = " \t\r\n\v\f";
+    char *tempString;
+    char *arguments;
+    int argumentCount;
 
     while(true)
     {
         printf("%s", prompt);
         gets(inputString);
-        command = strtok(inputString, " ");
-
+        command = strtok(inputString, delimeters);
+        printf("%s", command);
         switch (command)
         {
             case ECHO:
-                optionsAndArguments[0] = strtok(NULL, " ");
-                optionsAndArguments[1] = strtok(NULL, "\n");
-                if (optionsAndArguments[0][0] == "-")
-                {
-                    if (optionsAndArguments[0][1] == "n")
-                    {
 
-                    }
-                    else
-                    {
-                        printf("Invalid option entered");
-                        break;
-                    }
-                }
                 break;
 
             case PS1:
@@ -83,14 +71,11 @@ int main (int argc, char *argv[])
                 break;
 
             default:
+                
+
                 break;
         }
     }
     return 0;
-}
-
-const char** process_inputs(const char* inputString)
-{
-
 }
 
