@@ -18,7 +18,7 @@ int main (int argc, char *argv[])
     const char* inputString;
     const char* tempString;
     char delimeters[] = " \t\r\n\v\f";
-    char *tempString;
+    const char *tempString;
     char *arguments;
     int argumentCount;
 
