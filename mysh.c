@@ -2,14 +2,7 @@
 #include <string.h>
 
 #define MAX_INPUT 50
-#define ECHO "echo"
-#define PS1 "PS1"
-#define CAT "cat"
-#define CP "cp"
-#define RM "rm"
-#define MKDIR "mkdir"
-#define RMDIR "rmdir"
-#define EXIT "exit"
+#define TRUE = 1
 
 const char** process_inputs(const char* inputString);
 const char* cmd_echo(const char** arguments);
@@ -30,7 +23,7 @@ int main (int argc, char *argv[])
     char *arguments;
     int argumentCount;
 
-    while(true)
+    while(TRUE)
     {
         printf("%s", prompt);
         gets(inputString);
