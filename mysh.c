@@ -28,19 +28,19 @@ int main (int argc, char *argv[])
 
         printf("%s", prompt);
         fgets(inputString, MAX_INPUT, stdin);
-        printf("%s", inputString);
-        /*tempString = strtok(inputString, delimeters);
+        //printf("%s", inputString);
+        tempString = strtok(inputString, delimeters);
         while (tempString != NULL)
         {
             argumentCount++;
             arguments[argumentIndex] = tempString;
             tempString = strtok(NULL, delimeters);
             argumentIndex++;
-        }*/
-        /*for (int i = 0; i < argumentCount; i++)
+        }
+        for (int i = 0; i < argumentCount; i++)
         {
             printf("%s\n", arguments[i]);
-        }*/
+        }
     }
     return 0;
 }
