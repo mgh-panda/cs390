@@ -69,6 +69,7 @@ int main (int argc, char *argv[])
         //Display usage guidance
         printf("Usage: $ myls [-a] <dir name>\n");
     }
+    
     exit(1);
 }
 
