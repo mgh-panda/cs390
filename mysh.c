@@ -33,6 +33,7 @@ int main (int argc, char *argv[])
         {
             argumentCount++;
             arguments[argumentIndex] = tempString;
+            printf("%s", tempString);
             tempString = strtok(NULL, delimeters);
             argumentIndex++;
         }
