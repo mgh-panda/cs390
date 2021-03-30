@@ -31,9 +31,9 @@ int main (int argc, char *argv[])
         tempString = strtok(inputString, delimeters);
         while (tempString != NULL)
         {
+            printf("%s", tempString);
             argumentCount++;
             arguments[argumentIndex] = tempString;
-            printf("%s", tempString);
             tempString = strtok(NULL, delimeters);
             argumentIndex++;
         }
