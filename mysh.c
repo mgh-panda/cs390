@@ -27,7 +27,7 @@ int main (int argc, char *argv[])
         int argumentIndex = 0;
 
         printf("%s", prompt);
-        gets(inputString);
+        fgets(inputString);
         printf("%s", inputString);
         /*tempString = strtok(inputString, delimeters);
         while (tempString != NULL)
