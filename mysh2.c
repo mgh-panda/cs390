@@ -55,13 +55,15 @@ int run_external_program(char *args[])
 {
     printf("%s\n", "Run external program");
     //If filepath given
-    if (access(args[0], R_OK | X_OK))
+    if (access(args[0], R_OK || X_OK))
     {
         //EXECUTE
         //RETURN TRUE
+        printf("%s\n", "Checking filepath");
     }
     else
     {
+        printf("%s\n", "Filepath not given");
         int index = 0;
         const char* environmentPaths[28];
         char currentDirectory[256];
