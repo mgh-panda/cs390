@@ -44,7 +44,7 @@ int main (int argc, char *argv[])
         }
         for (int i = 0; i < argumentCount; i++)
         {
-            printf("%s\n", *(arguments[i][0]);
+            printf("%s\n", arguments[i][0]);
         }
     }
     return 0;
