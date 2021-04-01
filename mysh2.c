@@ -67,6 +67,7 @@ int run_external_program(const char *args[], const char *paths[])
 {
     int index = 0;
     char currentDirectory[256];
+    char *path;
 
     printf("%s\n", "Run external program");
     //If filepath given
