@@ -7,7 +7,7 @@
 #define TRUE 1
 #define FALSE 0
 
-int run_external_program(char *arguments[]);
+int run_external_program(const char *arguments[], const char *paths[]);
 int check_file_access(char *path);
 
 int main (int argc, char *argv[])
