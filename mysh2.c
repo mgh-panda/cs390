@@ -45,7 +45,7 @@ int main (int argc, char *argv[])
         for (int i = 0; i < argumentCount; i++)
         {
             tempString = arguments[i];
-            printf("%s\n", *tempString);
+            printf("%s\n", tempString[0]);
         }
 
     }
