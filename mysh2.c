@@ -18,7 +18,7 @@ int main (int argc, char *argv[])
 
     while(TRUE)
     {
-        const char* tempString;
+        char* tempString;
         int argumentCount = 0;
         int argumentIndex = 0;
 
