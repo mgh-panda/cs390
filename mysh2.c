@@ -12,9 +12,21 @@ int check_file_access(char *path);
 int main (int argc, char *argv[])
 {
     const char* prompt = "$";
+    const char* environmentPaths[100];
     char inputString[MAX_INPUT];
     char delimeters[] = " \t\r\n\v\f";
-    char *arguments[100];
+    char *arguments[10];
+    int index = 0;
+
+    char *path = getenv("PATH");
+    char *token = strtok(path, ":");
+    
+    while(token != NULL)
+    {
+        stringArray[index] = token;
+        token = strtok(NULL, ":");
+        index++;
+    }
 
     while(TRUE)
     {
@@ -42,7 +54,7 @@ int main (int argc, char *argv[])
         {
             printf("%s\n", arguments[i]);
         }
-        if (run_external_program(arguments) != TRUE)
+        if (run_external_program(arguments, environmentPaths) != TRUE)
         {
             //ERROR
             printf("%s\n", "Program not found...\n");
@@ -51,14 +63,11 @@ int main (int argc, char *argv[])
     return 0;
 }
 
-int run_external_program(char *args[])
+int run_external_program(const char *args[], const char *paths[])
 {
-        int index = 0;
-        const char* environmentPaths[100];
-        char currentDirectory[256];
+    int index = 0;
+    char currentDirectory[256];
 
-        //char *path = getenv("PATH");
-        //char *token = strtok(path, ":");
     printf("%s\n", "Run external program");
     //If filepath given
     if (access(args[0], R_OK || X_OK) == 1)
@@ -70,22 +79,14 @@ int run_external_program(char *args[])
     else
     {
         printf("%s\n", "Filepath not given");
-
-        while(token != NULL)
-        {
-            environmentPaths[index] = token;
-            token = strtok(NULL, ":");
-            index++;
-            printf("%s\n", "Loading environment paths");
-        }
         getcwd(currentDirectory, sizeof(currentDirectory));
 
-        environmentPaths[index] = NULL;
+        paths[index] = NULL;
 
-        while(environmentPaths[index] != NULL)
+        while(paths[index] != NULL)
         {
             printf("%s\n", "Searching environment paths");
-            strcpy(path, environmentPaths[index]);
+            strcpy(path, paths[index]);
             strcat(path, "/");   
             strcat(path, args[0]);
             strcat(path,".out");
