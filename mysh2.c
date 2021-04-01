@@ -44,7 +44,7 @@ int main (int argc, char *argv[])
         }
         for (int i = 0; i < argumentCount; i++)
         {
-            char[] charArray = arguments[i];
+            char charArray[] = arguments[i];
             printf("%s\n", charArray);
         }
 
