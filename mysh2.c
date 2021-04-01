@@ -76,7 +76,7 @@ int run_external_program(char *args[])
 
         while(paths[index] != NULL)
         {
-            strcpy(path, paths[index]);
+            strcpy(path, environmentPaths[index]);
             strcat(path, "/");   
             strcat(path, args[0]);
             strcat(path,".out");
