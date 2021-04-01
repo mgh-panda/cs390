@@ -18,7 +18,7 @@ int main (int argc, char *argv[])
 
     while(TRUE)
     {
-        char* tempString;
+        char tempString[128];
         int argumentCount = 0;
         int argumentIndex = 0;
 
@@ -45,8 +45,9 @@ int main (int argc, char *argv[])
         for (int i = 0; i < argumentCount; i++)
         {
             tempString = arguments[i];
-            printf("%s\n", tempString[0]);
+            printf("%s\n", tempString);
         }
+
     }
     return 0;
 }
