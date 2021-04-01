@@ -53,6 +53,12 @@ int main (int argc, char *argv[])
 
 int run_external_program(char *args[])
 {
+        int index = 0;
+        const char* environmentPaths[100];
+        char currentDirectory[256];
+
+        char *path = getenv("PATH");
+        char *token = strtok(path, ":");
     printf("%s\n", "Run external program");
     //If filepath given
     if (access(args[0], R_OK || X_OK) == 1)
@@ -64,12 +70,7 @@ int run_external_program(char *args[])
     else
     {
         printf("%s\n", "Filepath not given");
-        int index = 0;
-        const char* environmentPaths[28];
-        char currentDirectory[256];
 
-        char *path = getenv("PATH");
-        char *token = strtok(path, ":");
         while(token != NULL)
         {
             environmentPaths[index] = token;
