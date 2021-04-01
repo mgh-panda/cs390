@@ -62,7 +62,9 @@ int run_external_program(char *args[])
     else
     {
         int index = 0;
-        const char* environmentPaths[100];
+        const char* environmentPaths[28];
+        char currentDirectory[256];
+
         char *path = getenv("PATH");
         char *token = strtok(path, ":");
         while(token != NULL)
@@ -70,12 +72,15 @@ int run_external_program(char *args[])
             environmentPaths[index] = token;
             token = strtok(NULL, ":");
             index++;
+            printf("%s\n", "Loading environment paths");
         }
+        getcwd(currentDirectory, sizeof(currentDirectory));
 
         environmentPaths[index] = NULL;
 
         while(environmentPaths[index] != NULL)
         {
+            printf("%s\n", "Searching environment paths");
             strcpy(path, environmentPaths[index]);
             strcat(path, "/");   
             strcat(path, args[0]);
