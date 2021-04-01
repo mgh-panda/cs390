@@ -14,7 +14,7 @@ int main (int argc, char *argv[])
     const char* prompt = "$";
     char inputString[MAX_INPUT];
     char delimeters[] = " \t\r\n\v\f";
-    const char *arguments[100];
+    char *arguments[100];
 
     while(TRUE)
     {
