@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
-#define MAX_INPUT 50
+#define MAX_INPUT 128
 #define TRUE 1
 #define FALSE 0
 
@@ -59,9 +60,11 @@ int main (int argc, char *argv[])
                 index++;
             }
             environmentPaths[index] = NULL;
-            //check all paths including current directory for myls.c
-            if (fileAccess)
-            execv(arguments[0], arguments);
+            //check all paths including current directory for myls
+            if (execute_from_environment(environmentPaths, arguments) != TRUE)
+            {
+                //error
+            }
         }
         else
         {
@@ -71,6 +74,25 @@ int main (int argc, char *argv[])
         }
     }
     return 0;
+}
+int execute_from_environment(const char *paths[], const char *args[])
+{
+    int accessCheck = FALSE;
+    char *path;
+
+    while(paths[index] != NULL && accessCheck != TRUE)
+    {
+        strcpy(path, paths[index]);
+        strcat(path, "/");   
+        strcat(path, args[0]);
+        if (access(path, R_OK | X_OK)
+        {
+            accessCheck = TRUE;
+            //fork?
+            execv(path, args);
+            return TRUE;
+        }
+    }
 }
 
 /*
