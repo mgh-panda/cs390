@@ -83,8 +83,6 @@ int run_external_program(const char *args[], const char *paths[])
         printf("%s\n", "Filepath not given");
         getcwd(currentDirectory, sizeof(currentDirectory));
 
-        paths[index] = NULL;
-
         while(paths[index] != NULL)
         {
             printf("%s\n", "Searching environment paths");
