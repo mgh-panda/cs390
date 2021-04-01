@@ -24,7 +24,7 @@ int main (int argc, char *argv[])
     
     while(token != NULL)
     {
-        stringArray[index] = token;
+        environmentPaths[index] = token;
         token = strtok(NULL, ":");
         index++;
     }
