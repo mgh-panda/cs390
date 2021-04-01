@@ -54,7 +54,7 @@ int main (int argc, char *argv[])
 int run_external_program(char *args[])
 {
     //If filepath given
-    if (access(args[0], R_OK | X_OK)
+    if (access(args[0], R_OK | X_OK))
     {
         //EXECUTE
         //RETURN TRUE
@@ -80,7 +80,7 @@ int run_external_program(char *args[])
             strcat(path, "/");   
             strcat(path, args[0]);
             strcat(path,".out");
-            if (access(path, R_OK | X_OK)
+            if (access(path, R_OK | X_OK))
             {
                 //fork?
                 execv(path, args);
