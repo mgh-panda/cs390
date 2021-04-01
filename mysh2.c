@@ -53,6 +53,7 @@ int main (int argc, char *argv[])
 
 int run_external_program(char *args[])
 {
+    printf("%s\n", "Run external program");
     //If filepath given
     if (access(args[0], R_OK | X_OK))
     {
