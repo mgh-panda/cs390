@@ -80,19 +80,30 @@ int execute_from_environment(const char *paths[], const char *args[])
     int accessCheck = FALSE;
     char *path;
 
-    while(paths[index] != NULL && accessCheck != TRUE)
+    //If filepath given
+    if (access(args[0], R_OK | X_OK)
     {
-        strcpy(path, paths[index]);
-        strcat(path, "/");   
-        strcat(path, args[0]);
-        if (access(path, R_OK | X_OK)
+
+    }
+    //Search for program
+    else
+    {
+        while(paths[index] != NULL && accessCheck != TRUE)
         {
-            accessCheck = TRUE;
-            //fork?
-            execv(path, args);
-            return TRUE;
+            strcpy(path, paths[index]);
+            strcat(path, "/");   
+            strcat(path, args[0]);
+            strcat(path,".out");
+            if (access(path, R_OK | X_OK)
+            {
+                accessCheck = TRUE;
+                //fork?
+                execv(path, args);
+                return TRUE;
+            }
         }
     }
+
 }
 
 /*

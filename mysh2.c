@@ -42,12 +42,51 @@ int main (int argc, char *argv[])
         {
             printf("%s\n", arguments[i]);
         }
-        for (int i = 0; i < argumentCount; i++)
+        if (run_external_program(arguments) != TRUE)
         {
-            char charArray[] = arguments[i];
-            printf("%s\n", charArray);
+            //ERROR
+            printf("%s\n", "Program not found...\n");
         }
-
     }
     return 0;
+}
+
+int run_external_program(char *args[])
+{
+    //If filepath given
+    if (access(args[0], R_OK | X_OK)
+    {
+        //EXECUTE
+        //RETURN TRUE
+    }
+    else
+    {
+        int index = 0;
+        const char* environmentPaths[100];
+        char *path = getenv("PATH");
+        char *token = strtok(path, ":");
+        while(token != NULL)
+        {
+            environmentPaths[index] = token;
+            token = strtok(NULL, ":");
+            index++;
+        }
+
+        environmentPaths[index] = NULL;
+
+        while(paths[index] != NULL)
+        {
+            strcpy(path, paths[index]);
+            strcat(path, "/");   
+            strcat(path, args[0]);
+            strcat(path,".out");
+            if (access(path, R_OK | X_OK)
+            {
+                //fork?
+                execv(path, args);
+                return TRUE;
+            }
+        }
+        return FALSE;
+    }
 }
