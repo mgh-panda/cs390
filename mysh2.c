@@ -13,12 +13,12 @@ int check_file_access(char *path);
 int main (int argc, char *argv[])
 {
     const char* prompt = "$";
-    const char* environmentPaths[100];
+    const char* environmentPaths[500];
     char inputString[MAX_INPUT];
     char delimeters[] = " \t\r\n\v\f";
     char *arguments[10];
     int index = 0;
-
+    char currentDirectory[256];
     char *path = getenv("PATH");
     char *token = strtok(path, ":");
     
@@ -28,6 +28,11 @@ int main (int argc, char *argv[])
         token = strtok(NULL, ":");
         index++;
     }
+    getcwd(currentDirectory,sizeof(currentDirectory));
+    environmentPaths[index] = currentDirectory;
+    index++;
+    environmentPaths[index] = '0';
+
 
     while(TRUE)
     {
@@ -67,8 +72,7 @@ int main (int argc, char *argv[])
 int run_external_program(const char *args[], const char *paths[])
 {
     int index = 0;
-    char currentDirectory[256];
-    char *path;
+    char path[100];
 
     printf("%s\n", "Run external program");
     //If filepath given
@@ -81,21 +85,20 @@ int run_external_program(const char *args[], const char *paths[])
     else
     {
         printf("%s\n", "Filepath not given");
-        getcwd(currentDirectory, sizeof(currentDirectory));
-
-        while(paths[index] != NULL)
+        while(paths[index] != '0')
         {
-            printf("%s\n", "Searching environment paths");
             strcpy(path, paths[index]);
             strcat(path, "/");   
             strcat(path, args[0]);
             strcat(path,".out");
-            if (access(path, R_OK | X_OK))
+	    printf("%s\n", path);
+            if (access(path, R_OK | X_OK)== 0)
             {
-                //fork?
+                printf("%s\n", "File found");
                 execv(path, args);
                 return TRUE;
             }
+	    index++;
         }
         return FALSE;
     }
