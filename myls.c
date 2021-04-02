@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <sys/types.h>
 #include <dirent.h>
-
+#include <stdlib.h>
 
 int main (int argc, char *argv[])
 {
@@ -9,43 +10,58 @@ int main (int argc, char *argv[])
 
     if (argc == 1)
     {
-        if ((directoryPointer = opendir(".") == NULL)
+	printf("%s\n", "Opening current directory");
+	directoryPointer = opendir(".");
+        if (directoryPointer == NULL)
         {
             printf("No directory access.");
         }
-        else while (dirent = readdir(directoryPointer) != NULL)
+//	printf("%s\n", "Preparing to read directory");
+        else
         {
-            if (dirent.d_name[0] != ".")
-            {
-                printf("%s\n", dirent.d_name);
-            }
+		while ((directoryEntry = readdir(directoryPointer)) != NULL)
+		{
+			if (directoryEntry->d_name[0] != '.')
+			{
+				printf("%s\n", directoryEntry->d_name);
+			}
+		}
         }
     }
     else if (argc == 2)
     {
         if (argv[1] == "-a")
         {
-            if ((directoryPointer = opendir(".") == NULL)
+
+            directoryPointer = opendir(".");
+	    if (directoryPointer == NULL)
             {
                 printf("No directory access.");
             }
-            else while (dirent = readdir(directoryPointer) != NULL)
-            {
-                printf("%s\n", dirent.d_name);
+            else
+	    {
+	    	while ((directoryEntry = readdir(directoryPointer)) != NULL)
+            	{
+                	printf("%s\n", directoryEntry->d_name);
+		}
             }
         }
         else
         {
-            if ((directoryPointer = opendir(argv[1])) == NULL)
-            {
+            directoryPointer = opendir(argv[1]);
+            if (directoryPointer == NULL)
+	    {
                 printf("No directory access.");
             }
-            else while (dirent = readdir(directoryPointer) != NULL)
-            {
-                if (dirent.d_name[0] != ".")
-                {
-                    printf("%s\n", dirent.d_name);
-                }
+            else
+	    {
+		 while (directoryEntry = readdir(directoryPointer) != NULL)
+           	 {
+               		 if (directoryEntry->d_name[0] != ".")
+                	 {
+                   		 printf("%s\n", directoryEntry->d_name);
+               		 }
+		 }
             }
         }
     }
@@ -53,15 +69,24 @@ int main (int argc, char *argv[])
     {
         if (argv[1] != "-a")
         {
-            printf("Invalid option.")
+            printf("Invalid option.");
         }
-        else if ((directoryPointer = opendir(argv[2])) == NULL)
-        {
-            printf("No directory access.");
-        }
-        else while (dirent = readdir(directoryPointer) != NULL)
-        {
-            printf("%s\n", dirent.d_name);
+        else
+	{
+		directoryPointer = opendir(argv[2]);
+		if (directoryPointer == NULL)
+		{
+			printf("No directory access.");
+		}
+        
+       		 else
+		 { 
+			 while (directoryEntry = readdir(directoryPointer) != NULL)
+			 {
+				 printf("%s\n", directoryEntry->d_name);
+			 }
+       
+            	}
         }
     }
     else
@@ -69,7 +94,7 @@ int main (int argc, char *argv[])
         //Display usage guidance
         printf("Usage: $ myls [-a] <dir name>\n");
     }
-    
+   closedir(directoryPointer); 
     exit(1);
 }
 
